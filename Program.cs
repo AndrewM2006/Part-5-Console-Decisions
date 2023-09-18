@@ -14,7 +14,7 @@ namespace Part_5_Console_Decisions
             {
                 int menuOption;
                 Console.Clear();
-                Console.WriteLine("Press 1 for BoB Machine");
+                Console.WriteLine("Press 1 for BoB Machine, Press 2 for Parking Garage");
                 if (int.TryParse(Console.ReadLine(), out menuOption))
                 {
                     if (menuOption == 1)
@@ -134,23 +134,47 @@ namespace Part_5_Console_Decisions
         }
         public static void Parking()
         {
-            int minutes, hours;
+            int minutes, hours=0;
             double charge;
             bool valid=false;
             Console.WriteLine("How many Minutes were you Parked?");
             while (valid == false)
             {
-                if (int.TryParse(Console.ReadLine(), out minutes))
+                if (int.TryParse(Console.ReadLine(), out minutes)&&minutes>0)
                 {
                     valid = true;
+                    hours = (int)Math.Ceiling((double)minutes / 60);
                 }
                 else
                 {
                     Console.WriteLine("Enter a Valid Number");
                 }
-                hours = (int)Math.Ceiling((double)minutes / 60);
-                Console.WriteLine(hours);
+                charge = hours * 2 + 2;
+                if (charge > 20)
+                {
+                    charge = 20;
+                }
+                if (hours == 1)
+                {
+                    Console.WriteLine($"You have been charged {charge.ToString("C")} for {hours} hour of parking");
+                }
+                else
+                {
+                    Console.WriteLine($"You have been charged {charge.ToString("C")} for {hours} hours of parking");
+                }
                 System.Threading.Thread.Sleep(4000);
+            }
+        }
+        public static void Hurricane()
+        {
+            int hurricane;
+            if (int.TryParse(Console.ReadLine(), out  hurricane))
+            {
+
+            }
+            else
+            {
+
             }
         }
     }
