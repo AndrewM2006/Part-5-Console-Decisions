@@ -14,7 +14,7 @@ namespace Part_5_Console_Decisions
             {
                 int menuOption;
                 Console.Clear();
-                Console.WriteLine("Press 1 for BoB Machine, Press 2 for Parking Garage");
+                Console.WriteLine("Press 1 for BoB Machine, Press 2 for Parking Garage, or 3 for Hurricane Info");
                 if (int.TryParse(Console.ReadLine(), out menuOption))
                 {
                     if (menuOption == 1)
@@ -24,6 +24,14 @@ namespace Part_5_Console_Decisions
                     else if (menuOption == 2)
                     {
                         Parking();
+                    }
+                    else if(menuOption == 3)
+                    {
+                        Hurricane();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Input");
                     }
                 }
                 else
@@ -167,15 +175,49 @@ namespace Part_5_Console_Decisions
         }
         public static void Hurricane()
         {
-            int hurricane;
-            if (int.TryParse(Console.ReadLine(), out  hurricane))
+            int hurricane=0;
+            bool valid=false;
+            Console.Write("Enter the Rating of your Hurricane (1-5): ");
+            while(valid == false)
             {
+                if (int.TryParse(Console.ReadLine(), out hurricane))
+                {
+                    switch (hurricane)
+                    {
+                        case 1:
+                            Console.WriteLine("Category 1:74-95 mph or 64-82 kt or 119-153 km/hr");
+                            valid = true;
+                            break;
+                        case 2:
+                            Console.WriteLine("Category 2: 96-110 mph or 83-95 kt or 154-177 km/hr");
+                            valid = true;
+                            break;
+                        case 3:
+                            Console.WriteLine("Category 3: 111-130 mph or 96-113 kt or 178-209 km/hr");
+                            valid = true;
+                            break;
+                        case 4:
+                            Console.WriteLine("Category 4: 131-155 mph or 114-135 kt or 210-249 km/hr");
+                            valid = true;
+                            break;
+                        case 5:
+                            Console.WriteLine("Category 5: greater than 155 mph or 135 kt or 249 km/hr");
+                            valid = true;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Entry");
+                            Console.Write("Enter the Rating of your Hurricane (1-5): ");
+                            break;
 
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Entry");
+                    Console.Write("Enter the Rating of your Hurricane (1-5): ");
+                }
             }
-            else
-            {
-
-            }
+            System.Threading.Thread.Sleep(5000);
         }
     }
 }
